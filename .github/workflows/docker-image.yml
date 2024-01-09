@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build --rm --pull -f "Dockerfile" -t pitchdetection:latest "."
+    - name: run the new image 
+      run: docker images
+    - name: Run unit test on docker container
+      run: docker run --rm --init -it pitchdetection:latest /usr/src/pitch-detection/build/pitch_tests
+    - name: Run benchmark test in docker container 
+      run: docker run --rm --init -it pitchdetection:latest /usr/src/pitch-detection/build/pitch_bench
