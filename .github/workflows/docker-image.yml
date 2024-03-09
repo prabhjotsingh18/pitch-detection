@@ -24,3 +24,14 @@ jobs:
       run: docker run --rm --init -t pitchdetection:latest /usr/src/pitch-detection/build/pitch_tests
     - name: Run benchmark test in docker container 
       run: docker run --rm --init pitchdetection:latest /usr/src/pitch-detection/build/pitch_bench
+
+    - name: Print docker images
+      run: docker images
+
+    - name: Output Run ID
+      run: echo ${{ github.run_id }}
+    - name: Output Run Number
+      run: echo ${{ github.run_number }}
+    - name: Output Run Attempt
+      run: echo ${{ github.run_attempt }}
+      
