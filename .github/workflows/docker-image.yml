@@ -14,6 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      lfs: 'True'
     - name: Build the Docker image
       run: docker build --rm --pull -f "Dockerfile" -t pitchdetection:latest "."
     - name: show the new image
