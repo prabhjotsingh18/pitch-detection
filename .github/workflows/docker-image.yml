@@ -17,7 +17,7 @@ jobs:
       with:
         lfs: 'True'
     - name: Build the Docker image
-      run: docker build --rm --pull -f "Dockerfile" -t pitchdetection:latest  pitchdetection:${{ github.run_number }} "."
+      run: docker build --rm --pull -f "Dockerfile" -t pitchdetection:latest  -t pitchdetection:${{ github.run_number }} "."
     - name: show the new image
       run: docker images
     - name: Run unit test on docker container
